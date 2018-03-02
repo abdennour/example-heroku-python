@@ -10,28 +10,51 @@ from urllib.parse import unquote, parse_qs
 memory = {}
 
 form = '''<!DOCTYPE html>
-<title>Bookmark Server</title>
-<form method="POST">
-    <label>Long URI:
-        <input name="longuri">
-    </label>
-    <br>
-    <label>Short name:
-        <input name="shortname">
-    </label>
-    <br>
-    <button type="submit">Save it!</button>
-</form>
-<p>URIs I know about:
-<pre>
-{}
-</pre>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name=viewport content="width=device-width, initial-scale=1">
+    <meta name="robots" content="abdennour,nanodegree,python,fullstack,udacity,toumi" />
+    <title>Shortner links</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+
+  </head>
+  <body>
+    <main class="container mt-5">
+       <div>
+            <form method="POST">
+                <section>
+                   <h2>Shortener</h2>
+                   <div class="form-group">
+                     <label for="longuri">Long URI: </label>
+                     <input name="longuri" id="longuri" class="form-control" placeholder="Your long Link http://...">
+                   </div>
+                   <div class="form-group">
+                     <label for="shortname">Short name:</label>
+                     <input name="shortname" id="shortname" class="form-control" placeholder="my-link">
+                   </div>
+                   <button type="submit" class="btn btn-primary">Save it!</button>
+
+                </section>
+             </form>
+             <hr>
+             <section>
+               <h2>URIs I know about</h2>
+               <pre>
+                 {}
+               </pre>
+             </section>
+       </div>
+    </main>
+  </body>
+</html>
+
 '''
 
 
 def CheckURI(uri, timeout=5):
     '''Check whether this URI is reachable, i.e. does it return a 200 OK?
-    
+
     This function returns True if a GET request to uri returns a 200 OK, and
     False if that GET request returns any other response, or doesn't return
     (i.e. times out).
